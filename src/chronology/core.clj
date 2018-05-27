@@ -95,8 +95,9 @@
                                     (let [start  (System/currentTimeMillis)
                                           result (try
                                                    (->Success (f (merge context tick-context)))
-                                                   (catch Exception e (->Failure e)))]
-                                      (assoc result :duration (- (System/currentTimeMillis) start))))))]
+                                                   (catch Exception e (->Failure e)))
+                                          stop   (System/currentTimeMillis)]
+                                      (assoc result :duration (- stop start))))))]
              (async/>! results (merge result tick-context))
              (recur))
            (with-scheduling-system system
