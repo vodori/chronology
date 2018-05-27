@@ -2,7 +2,7 @@
 (cemerick.pomegranate.aether/register-wagon-factory!
   "http" #(org.apache.maven.wagon.providers.http.HttpWagon.))
 
-(defproject com.vodori.pepper/chronology "0.1.1"
+(defproject com.vodori.pepper/chronology "0.1.2-SNAPSHOT"
 
   :repositories
   [["releases" {:username      :env/ARTIFACTORY_USERNAME
