@@ -24,6 +24,6 @@
 
   :dependencies [[org.clojure/clojure "1.10.0-alpha7"]
                  [org.clojure/core.async "0.4.474"]
-                 [com.cronutils/cron-utils "7.0.1"]
+                 [com.cronutils/cron-utils "7.0.5"]
                  [jarohen/chime "0.2.2"]
                  [clj-time "0.14.4"]])
