@@ -1,35 +1,29 @@
-(require 'cemerick.pomegranate.aether)
-(cemerick.pomegranate.aether/register-wagon-factory!
-  "http" #(org.apache.maven.wagon.providers.http.HttpWagon.))
+(defproject com.vodori/chronology "0.1.0"
+  :description "A lightweight task scheduler and cron utilities"
 
-(defproject com.vodori.pepper/chronology "0.1.3-SNAPSHOT"
+  :url
+  "https://github.com/vodori/chronology"
 
-  :repositories
-  [["releases" {:username      :env/ARTIFACTORY_USERNAME
-                :password      :env/ARTIFACTORY_PASSWORD
-                :sign-releases false
-                :url           "http://artifactory.vodori.com/artifactory/libs-release-local/"}]
+  :license
+  {:name "MIT License" :url "http://opensource.org/licenses/MIT" :year 2018 :key "mit"}
 
-   ["snapshots" {:username      :env/ARTIFACTORY_USERNAME
-                 :password      :env/ARTIFACTORY_PASSWORD
-                 :sign-releases false
-                 :url           "http://artifactory.vodori.com/artifactory/libs-snapshot-local/"}]]
+  :scm
+  {:name "git" :url "https://github.com/vodori/chronology"}
 
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :pom-addition
+  [:developers
+   [:developer
+    [:name "Paul Rutledge"]
+    [:url "https://github.com/rutledgepaulv"]
+    [:email "paul.rutledge@vodori.com"]
+    [:timezone "-5"]]]
+
+  :deploy-repositories
+  {"releases"  {:url "https://oss.sonatype.org/service/local/staging/deploy/maven2/" :creds :gpg}
+   "snapshots" {:url "https://oss.sonatype.org/content/repositories/snapshots/" :creds :gpg}}
+
+  :dependencies [[org.clojure/clojure "1.10.0-alpha7"]
                  [org.clojure/core.async "0.4.474"]
                  [com.cronutils/cron-utils "7.0.1"]
                  [jarohen/chime "0.2.2"]
-                 [clj-time "0.14.4"]]
-
-  :plugins [[test2junit "1.2.2"]]
-
-  :release-tasks [["vcs" "assert-committed"]
-                  ["change" "version" "leiningen.release/bump-version" "release"]
-                  ["vcs" "commit"]
-                  ["vcs" "tag" "--no-sign"]
-                  ["deploy"]
-                  ["change" "version" "leiningen.release/bump-version"]
-                  ["vcs" "commit"]
-                  ["vcs" "push"]]
-
-  :test2junit-output-dir "target/test-reports")
+                 [clj-time "0.14.4"]])

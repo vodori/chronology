@@ -118,14 +118,5 @@
    (schedule-once-at-next-tick key cron f {}))
   ([key cron f ctx]
    (let [context (assoc (or ctx {}) :cron cron)
-         ticker  (utils/periodic-ticker cron)
-         counter (atom 1)
-         x       (atom nil)]
-     (letfn [(f* [& args]
-               (if (zero? (swap! counter dec))
-                 (try
-                   (reset! x (apply f args))
-                   (finally
-                     (async/close! ticker)))
-                 @x))]
-       (schedule key ticker f* context)))))
+         ticker  (->> (utils/periodic-ticker cron) (async/take 1))]
+     (schedule key ticker f context))))

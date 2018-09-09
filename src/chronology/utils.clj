@@ -45,14 +45,27 @@
     (.describe descriptor parsed)))
 
 (defn forward-cron-sequence
+  "Get a sequence of forward marching timestamps according to the cron expression.
+
+  start - The point in time (exclusive) that the sequence should march onward from.
+  expression - The quartz-style cron expression.
+  "
   ([expression] (forward-cron-sequence (time/now) expression))
   ([start expression] (cron-sequence start expression true)))
 
 (defn backward-cron-sequence
+  "Get a sequence of backward marching timestamps according to the cron expression.
+
+  start - The point in time (exclusive) that the sequence should march backward from.
+  expression - The quartz-style cron expression.
+  "
   ([expression] (backward-cron-sequence (time/now) expression))
   ([start expression] (cron-sequence start expression false)))
 
 (defn periodic-ticker
+  "Gets a core.async channel that emits whenever a cron tick hits. Implements a sliding
+  buffer so if not taken from before the next value is available the existing value will
+  be dropped and only the new value will be available for taking."
   ([expression]
    (periodic-ticker (time/now) expression))
   ([start expression]
