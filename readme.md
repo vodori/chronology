@@ -3,8 +3,9 @@
 
 ### Chronology
 
-A library for scheduling tasks according to cron expressions. Also provides forward and backward
-infinite sequences of DateTime objects for a given cron expression (quartz style).
+A library for scheduling tasks using core.async according to cron expressions. Chronology also 
+provides forward and backward infinite sequences of DateTime objects for a given cron expression. 
+Cron expressions are in the style of [quartz](http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html).
 
 ### Install
 
@@ -26,11 +27,36 @@ sequence into a channel by using [chime](https://github.com/jarohen/chime).
 
 (require '[chronology.utils :refer :all])
 
-(def tick (time/now))
+(def tick (f/parse "2000-01-01T00:00:00.000Z"))
 
-(def next-five-ticks (take 5 (forward-cron-sequence tick cron)))
+(def cron "0 */5 * * * ?")
 
-(def last-five-ticks (take 5 (backward-cron-sequence tick cron)))
+(defn datetime->iso [dt] 
+  (f/unparse (f/formatter :date-time) dt))
+  
+(def human-readable (explain-cron cron))
+;=> "every 5 minutes"
+
+(->> (forward-cron-sequence tick cron)
+     (map datetime->iso)
+     (take 5))
+     
+;=> ("2000-01-01T00:05:00.000Z" 
+;    "2000-01-01T00:10:00.000Z" 
+;    "2000-01-01T00:15:00.000Z" 
+;    "2000-01-01T00:20:00.000Z" 
+;    "2000-01-01T00:25:00.000Z")
+
+
+(->> (backward-cron-sequence tick cron)
+     (map datetime->iso)
+     (take 5))
+     
+;=> ("1999-12-31T23:55:00.000Z" 
+;    "1999-12-31T23:50:00.000Z" 
+;    "1999-12-31T23:45:00.000Z" 
+;    "1999-12-31T23:40:00.000Z" 
+;    "1999-12-31T23:35:00.000Z")
 
 ```
 
