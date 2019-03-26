@@ -16,14 +16,19 @@
     [:name "Paul Rutledge"]
     [:url "https://github.com/rutledgepaulv"]
     [:email "paul.rutledge@vodori.com"]
-    [:timezone "-5"]]]
+    [:timezone "-5"]]
+   [:developer
+    [:name "Travis Stom"]
+    [:url "https://github.com/travisstom"]
+    [:email "travis.stom@vodori.com"]
+    [:timezone "-4"]]]
 
   :deploy-repositories
   {"releases"  {:url "https://oss.sonatype.org/service/local/staging/deploy/maven2/" :creds :gpg}
    "snapshots" {:url "https://oss.sonatype.org/content/repositories/snapshots/" :creds :gpg}}
 
-  :dependencies [[org.clojure/clojure "1.10.0-alpha7"]
-                 [org.clojure/core.async "0.4.474"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
+                 [org.clojure/core.async "0.4.490"]
                  [com.cronutils/cron-utils "7.0.5"]
                  [jarohen/chime "0.2.2"]
                  [clj-time "0.14.4"]])
