@@ -1,4 +1,4 @@
-(defproject com.vodori/chronology "0.1.1"
+(defproject com.vodori/chronology "0.1.2-SNAPSHOT"
   :description "A lightweight task scheduler and cron utilities"
 
   :url
