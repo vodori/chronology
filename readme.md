@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/vodori/chronology.svg?branch=develop)](https://travis-ci.org/vodori/chronology) [![Maven metadata URL](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/vodori/chronology/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.vodori/chronology)
+[![Build Status](https://travis-ci.com/vodori/chronology.svg?branch=develop)](https://travis-ci.com/vodori/chronology) [![Maven metadata URL](https://img.shields.io/maven-metadata/v/https/repo1.maven.org/maven2/com/vodori/chronology/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.vodori/chronology)
 
 
 ### Chronology
