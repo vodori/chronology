@@ -1,4 +1,4 @@
-(defproject com.vodori/chronology "0.1.2-SNAPSHOT"
+(defproject com.vodori/chronology "0.1.2"
   :description "A lightweight task scheduler and cron utilities"
 
   :url
@@ -27,8 +27,8 @@
   {"releases"  {:url "https://oss.sonatype.org/service/local/staging/deploy/maven2/" :creds :gpg}
    "snapshots" {:url "https://oss.sonatype.org/content/repositories/snapshots/" :creds :gpg}}
 
-  :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/core.async "0.4.490"]
-                 [com.cronutils/cron-utils "7.0.5"]
-                 [jarohen/chime "0.2.2"]
-                 [clj-time "0.14.4"]])
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/core.async "1.6.673"]
+                 [com.cronutils/cron-utils "9.2.0"]
+                 [jarohen/chime "0.3.3"]
+                 [clj-time "0.15.2"]])

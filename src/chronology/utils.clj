@@ -1,7 +1,9 @@
 (ns chronology.utils
   (:require [clojure.core.async :as async]
             [clj-time.core :as time]
-            [chime :as chime])
+            [chime.core-async :as chime-async]
+  ;Chime now uses java.time (:require chime.joda-time) to preserve backward compatibility
+            [chime.joda-time])
   (:import (com.cronutils.model.time ExecutionTime)
            (java.time ZonedDateTime)
            (org.joda.time DateTime DateTimeZone)
@@ -24,7 +26,7 @@
 
 (defn- time-sequence->ticker [cron-sequence]
   (let [buffered (async/chan (async/sliding-buffer 1))]
-    (chime/chime-ch cron-sequence buffered)))
+    (chime-async/chime-ch cron-sequence buffered)))
 
 (defn- cron-sequence
   [start expression forward?]
